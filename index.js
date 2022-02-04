@@ -12,7 +12,7 @@ app.use('/users', usersRoutes)
 
 const name = 'ALLAN ACOSTA';
 
-app.get('/', (req, res) => res.send(`HELLO, ${name} FROM THE HOME PAGE`))
+app.get('/', (req, res) => res.status(418).send(`HELLO, ${name} FROM THE HOME PAGE`))
 
 app.listen(PORT, () =>
     console.log(`Server is Running on port: http://localhost:${PORT}`)

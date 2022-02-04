@@ -2,26 +2,27 @@ import { v4 as uuidv4 } from 'uuid'; //to generate a different ID for each user.
 
 let users = []
 
-//GET METHOD
+//GET USERS (PLURAL) METHOD
 export const getUsers = (req, res) => {
 
-    res.send(users)
+    res.status(418).send(users)
+
 }
 
 //POST METHOD
 export const createUser = (req, res) => {
     const user = req.body
 
-    users.push({ ...user, id: uuidv4()})
+    users.push({ ...user, id: uuidv4() })
 
-    res.send(`User "${user.firstName}" has been added to the database.`)
+    res.status(418).send(`User "${user.firstName}" has been added to the database.`)
 }
-//GET USER METHOD
+//GET USER (SINGULAR) METHOD
 export const getUser = (req, res) => {
     const { id } = req.params
 
     const foundUser = users.find((user) => user.id === id)
-
+    
     res.send(foundUser)
 };
 
@@ -31,20 +32,20 @@ export const deleteUser = (req, res) => {
 
     users = users.filter((user) => user.id != id)
 
-    res.send(`User with id ${id} DELETED from database!!!`)
+    res.status(418).send(`User with id ${id} DELETED from database!!!`)
 
 };
 
 //PATCH METHOD
 export const updateUser = (req, res) => {
     const { id } = req.params
-    const { firstName, lastName, age} = req.body
+    const { firstName, lastName, age } = req.body
 
     const user = users.find((user) => user.id === id)
 
-    if(firstName) user.firstName = firstName;
-    if(lastName) user.lastName = lastName;
-    if(age) user.age = age;
+    if (firstName) user.firstName = firstName;
+    if (lastName) user.lastName = lastName;
+    if (age) user.age = age;
 
-    res.send(`User with id ${id} has been UPDATED in the database`)
+    res.status(418).send(`User with id ${id} has been UPDATED in the database`)
 }
